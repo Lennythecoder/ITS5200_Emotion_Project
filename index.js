@@ -33,29 +33,25 @@ function convertImageToTensor(image) {
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
                 ctx.drawImage(imgElement, xOffset, yOffset, newWidth, newHeight);
 
-                 const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
-                 const normalizedData = imageData.map(value => value / 255.0);
-           
-             
-                const normalizedData = replicatedData.map(value => value / 255.0);
+                const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+                const normalizedData = imageData.map(value => value / 255.0);
 
                 // Assuming your model expects the input size [1, 3, 48, 48]
-                const expectedDims = [1, 3, 48, 48];
-                const expectedDimsM = [1, 3, 48, 48];
+                const expectedDims = [1, 1, 48, 48];
                 
 
                 // Debugging output
                 console.log('Normalized:', normalizedData.length);
-                console.log('Expected:', expectedDimsM.reduce((a, b) => a * b, 1));
+                console.log('Expected:', expectedDims.reduce((a, b) => a * b, 1));
 
                 // Ensure that the normalized data length matches the expected size
-                if (normalizedData.length !== expectedDimsM.reduce((a, b) => a * b, 1)) {
+                if (normalizedData.length !== expectedDims.reduce((a, b) => a * b, 1)) {
                     reject(new Error('Input dims do not match data length.'));
                     return;
                 }
 
                 // Create a Float32Array with the correct size
-                const tensorData = new Float32Array(expectedDimsM.reduce((a, b) => a * b, 1));
+                const tensorData = new Float32Array(expectedDims.reduce((a, b) => a * b, 1));
 
                 // Copy the normalized data to the tensor data, skipping the alpha channel
                 for (let i = 0; i < normalizedData.length / 4; i++) {
@@ -64,7 +60,7 @@ function convertImageToTensor(image) {
                     }
                 }
 
-                const tensor = new onnx.Tensor(tensorData, 'float32', expectedDimsM);
+                const tensor = new onnx.Tensor(tensorData, 'float32', expectedDims);
 
                 resolve(tensor);
             };
