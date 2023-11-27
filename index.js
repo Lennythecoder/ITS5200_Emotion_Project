@@ -33,11 +33,11 @@ function convertImageToTensor(image) {
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
                 ctx.drawImage(imgElement, xOffset, yOffset, newWidth, newHeight);
 
-
                 const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
                 // Create an array to store the replicated data
                 const replicatedData = [];
                 // Replicate the single channel three times
+                // properly fill in rgb channel 3
                 for (let i = 0; i < imageData.length; i++) {
                     replicatedData.push(imageData[i]);
                     replicatedData.push(imageData[i]);
