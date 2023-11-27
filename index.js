@@ -36,6 +36,7 @@ function convertImageToTensor(image) {
                 const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
                 const normalizedData = imageData.map(value => value / 255.0);
 
+
                 // Assuming your model expects the input size [1, 3, 48, 48]
                 const expectedDims = [1, 3, 48, 48];
                 const expectedDimsM = [1, 3, 48, 48];
