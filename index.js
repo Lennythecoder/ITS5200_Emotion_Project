@@ -37,7 +37,7 @@ function convertImageToTensor(image) {
                 const normalizedData = imageData.map(value => value / 255.0);
 
                 // Assuming your model expects the input size [1, 3, 48, 48]
-                const expectedDims = [1, 1, 48, 48];
+                const expectedDims = [1, 3, 48, 48];
                 
 
                 // Debugging output
