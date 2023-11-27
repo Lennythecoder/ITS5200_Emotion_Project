@@ -33,9 +33,17 @@ function convertImageToTensor(image) {
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
                 ctx.drawImage(imgElement, xOffset, yOffset, newWidth, newHeight);
 
-                const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
-                const normalizedData = imageData.map(value => value / 255.0);
 
+                const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+                // Create an array to store the replicated data
+                const replicatedData = [];
+                // Replicate the single channel three times
+                for (let i = 0; i < imageData.length; i++) {
+                    replicatedData.push(imageData[i]);
+                    replicatedData.push(imageData[i]);
+                    replicatedData.push(imageData[i]);
+                    }
+                const normalizedData = replicatedData.map(value => value / 255.0);
 
                 // Assuming your model expects the input size [1, 3, 48, 48]
                 const expectedDims = [1, 3, 48, 48];
