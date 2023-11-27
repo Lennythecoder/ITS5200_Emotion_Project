@@ -38,7 +38,7 @@ function convertImageToTensor(image) {
 
                 // Assuming your model expects the input size [1, 3, 48, 48]
                 const expectedDims = [1, 3, 48, 48];
-                const expectedDimsM = [1, 3, 96, 96];
+                const expectedDimsM = [1, 3, 48, 48];
                 
 
                 // Debugging output
