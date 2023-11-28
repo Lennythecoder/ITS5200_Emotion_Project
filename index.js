@@ -56,9 +56,9 @@ function convertImageToTensor(image) {
                 const tensorData = new Float32Array(expectedDims.reduce((a, b) => a * b, 1));
 
                 // Copy the normalized data to the tensor data, skipping the alpha channel
-                for (let i = 0; i < normalizedData.length / 4; i++) {
+                for (let i = 0; i < normalizedData.length / 3; i++) {
                     for (let j = 0; j < 3; j++) {
-                        tensorData[i * 3 + j] = normalizedData[i * 4 + j];
+                        tensorData[i * 3 + j] = normalizedData[i * 3 + j];
                     }
                 }
 
