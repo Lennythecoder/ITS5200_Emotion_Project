@@ -142,7 +142,7 @@ function processOutput(outputTensor) {
     // Find the index of the maximum value
     const maxIndex = outputArray.indexOf(Math.max(...outputArray));
 
-    // Replace with your actual class names
+    // Class names happy and sad
     const emotionClasses = ["Happy", "Sad"];
 
     // Get the predicted emotion based on the index
