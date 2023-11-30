@@ -34,8 +34,19 @@ function convertImageToTensor(image) {
                 ctx.drawImage(imgElement, xOffset, yOffset, newWidth, newHeight);
 
                 const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
-                const normalizedData = imageData.map(value => value / 255.0);
-
+                // Ensure the image data has a length that is a multiple of 4 (RGBA)
+                if (imageData.length % 4 !== 0) {
+                    reject(new Error('Invalid image data format.'));
+                    return;
+                }
+                const normalizedData = [];
+                // Copy only RGB values, skipping the alpha channel
+                for (let i = 0; i < imageData.length; i += 4) {
+                    normalizedData.push(imageData[i] / 255.0);
+                    normalizedData.push(imageData[i + 1] / 255.0);
+                    normalizedData.push(imageData[i + 2] / 255.0);
+                }
+                
                 // Assuming your model expects the input size [1, 3, 48, 48]
                 // changed 1 * 1 * 48 * 48 to
                 // 1 * 3 * 48 * 48
