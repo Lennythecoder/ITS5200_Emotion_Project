@@ -136,10 +136,16 @@ async function preprocessImage(image) {
 
 // Function to process the output tensor
 function processOutput(outputTensor) {
-    // Implement logic to interpret the output tensor
-    // Example: Assuming outputTensor is a Float32Array with confidence scores
-    const maxIndex = outputTensor.indexOf(Math.max(...outputTensor));
-    const emotionClasses = ["Happy", "Sad"];  // Replace with your actual class names
+    // Convert the Float32Array to a regular array
+    const outputArray = Array.from(outputTensor);
+
+    // Find the index of the maximum value
+    const maxIndex = outputArray.indexOf(Math.max(...outputArray));
+
+    // Replace with your actual class names
+    const emotionClasses = ["Happy", "Sad"];
+
+    // Get the predicted emotion based on the index
     const predictedEmotion = emotionClasses[maxIndex];
 
     return predictedEmotion;
