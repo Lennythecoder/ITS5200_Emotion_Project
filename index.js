@@ -33,5 +33,5 @@ function argMax(array, dimensions) {
         maxIndex = Math.floor(maxIndex / dimensions[i]);
     }
 
-    return multiIndex[1]; // Assuming the second dimension corresponds to the classes
+    return multiIndex[1];
 }
