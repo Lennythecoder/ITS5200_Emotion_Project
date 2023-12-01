@@ -73,6 +73,7 @@ function convertImageToTensor(image) {
                     }
                 }
 
+                console.log('Tensor Data:', tensorData);
                 const tensor = new onnx.Tensor(tensorData, 'float32', expectedDims);
 
                 resolve(tensor);
@@ -111,6 +112,7 @@ async function runInference() {
 
         // Run inference
         const outputTensor = await session.run([tensor]);
+        console.log('Output Tensor Shape:', outputTensor.dims);
 
         // Process the output (interpret the result)
         const predictedEmotion = processOutput(outputTensor);
@@ -138,6 +140,9 @@ async function preprocessImage(image) {
 function processOutput(outputTensor) {
     // Convert the Float32Array to a regular array
     const outputArray = Array.from(outputTensor);
+
+    // Log the confidence scores
+    console.log('Confidence Scores:', outputArray);
 
     const dimensions = [1, 2];
     const maxIndex = argMax(outputArray, dimensions);
