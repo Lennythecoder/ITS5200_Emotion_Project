@@ -136,11 +136,10 @@ async function preprocessImage(image) {
     return tensor;
 }
 
-// Function to process the output tensor
 function processOutput(outputTensor) {
-    // Convert the Float32Array to a regular array
-    const outputArray = Array.from(outputTensor);
-
+    // Assuming the output is an array of outputs, and we take the first one
+    const outputArray = outputTensor[0];
+    
     // Log the confidence scores
     console.log('Confidence Scores:', outputArray);
 
