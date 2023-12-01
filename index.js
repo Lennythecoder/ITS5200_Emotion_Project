@@ -112,7 +112,7 @@ async function runInference() {
 
         // Run inference
         const outputTensor = await session.run([tensor]);
-        console.log('Output Tensor Shape:', outputTensor.dims);
+        console.log('Output Tensor:', outputTensor); // Log the outputTensor to inspect its structure
 
         // Process the output (interpret the result)
         const predictedEmotion = processOutput(outputTensor);
