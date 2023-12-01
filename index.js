@@ -137,8 +137,8 @@ async function preprocessImage(image) {
 }
 
 function processOutput(outputTensor) {
-    // Assuming the output is an array of outputs, and we take the first one
-    const outputArray = outputTensor[0];
+    const outputMap = outputTensor.values().next().value;
+    const outputArray = outputMap.data
     
     // Log the confidence scores
     console.log('Confidence Scores:', outputArray);
