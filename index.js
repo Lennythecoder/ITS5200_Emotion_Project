@@ -169,5 +169,5 @@ function argMax(array, dimensions) {
         maxIndex = Math.floor(maxIndex / dimensions[i]);
     }
 
-    return multiIndex[1];
+    return multiIndex[0];
 }
