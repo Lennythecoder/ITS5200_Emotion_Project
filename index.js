@@ -1,12 +1,13 @@
+// Convert Image to Tensor 
 function convertImageToTensor(image) {
     return new Promise((resolve, reject) => {
         if (!(image instanceof Blob)) {
             reject(new Error('Invalid image parameter'));
             return;
         }
-
+        // call file reader
         const reader = new FileReader();
-
+        
         reader.onload = function (e) {
             const imgElement = new Image();
             imgElement.src = e.target.result;
@@ -47,8 +48,7 @@ function convertImageToTensor(image) {
                     normalizedData.push(imageData[i + 2] / 255.0);
                 }
                 
-                // Assuming your model expects the input size [1, 3, 48, 48]
-                // changed 1 * 1 * 48 * 48 to
+                // images are of size
                 // 1 * 3 * 48 * 48
                 const expectedDims = [1, 3, 48, 48];
                 
