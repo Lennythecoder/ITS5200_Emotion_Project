@@ -147,7 +147,7 @@ function processOutput(outputTensor) {
     const maxIndex = argMax(outputArray, dimensions);
 
     // Class names happy and sad
-    const emotionClasses = ["Fear","Happy","Sad"];
+    const emotionClasses = ["happy", "sad"];
 
     // Get the predicted emotion based on the index
     const predictedEmotion = emotionClasses[maxIndex];
